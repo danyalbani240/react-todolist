@@ -4,7 +4,9 @@ import TodoList from "./TodoList.js";
 const TodosContext = createContext();
 const TodosContextDispatch = createContext();
 const TodoApp = () => {
-	const [todos, setTodos] = useState([]);
+	const [todos, setTodos] = useState(
+		localStorage.todos === undefined ? [] : JSON.parse(localStorage.todos)
+	);
 
 	const completeTodo = (id) => {
 		const index = todos.findIndex((item) => item.id === id);
@@ -14,6 +16,7 @@ const TodoApp = () => {
 		clonedTodos[index].isCompleted = !clonedTodos[index].isCompleted;
 
 		setTodos([...clonedTodos]);
+		localStorage.setItem("todos", JSON.stringify([...clonedTodos]));
 	};
 	const deleteTodo = (id) => {
 		const index = todos.findIndex((item) => item.id === id);
@@ -22,6 +25,7 @@ const TodoApp = () => {
 		clonedTodos.splice(index, index + 1);
 
 		setTodos([...clonedTodos]);
+		localStorage.setItem("todos", JSON.stringify([...clonedTodos]));
 	};
 	const editTodo = (id, value) => {
 		const index = todos.findIndex((item) => item.id === id);
@@ -31,6 +35,7 @@ const TodoApp = () => {
 		clonedTodos[index].title = value;
 
 		setTodos([...clonedTodos]);
+		localStorage.setItem("todos", JSON.stringify([...clonedTodos]));
 	};
 	return (
 		<TodosContext.Provider value={todos}>

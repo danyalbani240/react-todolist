@@ -29,7 +29,7 @@ const TodoItem = ({
 				<div className="flex items-center justify-center">
 					<div
 						className={
-							"box w-4 h-4  hover:bg-gray-300 transition-all flex items-center justify-center mr-2 " +
+							"box w-4 h-4  hover:bg-gray-300 transition-all flex items-center justify-center mr-2 cursor-pointer " +
 							(isCompleted ? "bg-blue-500" : "bg-gray-400")
 						}
 						onClick={() => completeTodo(id)}

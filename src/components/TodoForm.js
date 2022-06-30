@@ -1,13 +1,8 @@
 import { useState } from "react";
-import { useTodosActions } from "./TodoApp";
+import { useTodos, useTodosActions } from "./TodoApp";
 
 const TodoForm = () => {
 	const [todo, setTodo] = useState("");
-	/*
-	
-		get the index, find the item , 
-		create new Item and say the item is equal to this now or actually use splice
-	*/
 
 	const dispatch = useTodosActions();
 	const addTodo = (e) => {
@@ -17,7 +12,13 @@ const TodoForm = () => {
 			isCompleted: false,
 			title: todo,
 		};
-		dispatch((oldValue) => [...oldValue, newTodo]);
+		let old = [];
+		dispatch((oldValue) => {
+			old = oldValue;
+			return [...oldValue, newTodo];
+		});
+		//set it to local storage :
+		localStorage.setItem("todos", JSON.stringify([...old, newTodo]));
 		setTodo("");
 	};
 
