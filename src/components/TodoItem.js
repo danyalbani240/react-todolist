@@ -33,6 +33,7 @@ const TodoItem = ({
 							? "line-through text-gray-400"
 							: "")
 					}
+					onClick={() => completeTodo(id)}
 				>
 					{title}
 				</p>
@@ -52,12 +53,7 @@ const TodoItem = ({
 				>
 					Delete
 				</button>
-				<button
-					className={"bg-violet-600 text-white p-2 rounded"}
-					onClick={() => completeTodo(id)}
-				>
-					Complete
-				</button>
+
 				<button
 					onClick={edit}
 					className="bg-violet-600 text-white p-2 rounded"
