@@ -1,5 +1,5 @@
 import { useTodos } from "./TodoApp";
-import TodoItem from "./TodoItem";
+import TodoItem from "./TodoItem/TodoItem";
 
 const TodoList = ({ completeTodo, deleteTodo, editTodo }) => {
 	const todos = useTodos();

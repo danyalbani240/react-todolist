@@ -1,5 +1,5 @@
 import { useState } from "react";
-
+import { BiCheck } from "react-icons/bi";
 const TodoItem = ({
 	title,
 	isCompleted,
@@ -26,17 +26,31 @@ const TodoItem = ({
 			}
 		>
 			{!isEdit ? (
-				<p
-					className={
-						"title text-lg font-bold transition " +
-						(isCompleted === true
-							? "line-through text-gray-400"
-							: "")
-					}
-					onClick={() => completeTodo(id)}
-				>
-					{title}
-				</p>
+				<div className="flex items-center justify-center">
+					<div
+						className={
+							"box w-4 h-4  hover:bg-gray-300 transition-all flex items-center justify-center mr-2 " +
+							(isCompleted ? "bg-blue-500" : "bg-gray-400")
+						}
+						onClick={() => completeTodo(id)}
+					>
+						<BiCheck
+							className={
+								!isCompleted ? "hidden" : "" + "text-white"
+							}
+						/>
+					</div>
+					<p
+						className={
+							"title text-lg font-bold transition " +
+							(isCompleted === true
+								? "line-through text-gray-400"
+								: "")
+						}
+					>
+						{title}
+					</p>
+				</div>
 			) : (
 				<input
 					type="text"
@@ -46,7 +60,7 @@ const TodoItem = ({
 					onChange={(e) => setValue(e.target.value)}
 				/>
 			)}
-			<div className="actions flex w-6/12 justify-between">
+			<div className="actions flex w-4/12 justify-between">
 				<button
 					onClick={() => deleteTodo(id)}
 					className="bg-violet-600 text-white p-2 rounded"
