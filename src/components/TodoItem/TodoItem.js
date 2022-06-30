@@ -58,6 +58,7 @@ const TodoItem = ({
 					className={"border-b-2 py-2 outline-none"}
 					value={value}
 					onChange={(e) => setValue(e.target.value)}
+					onKeyDown={(e) => (e.key === "Enter" ? edit() : "")}
 				/>
 			)}
 			<div className="actions flex w-4/12 justify-between">

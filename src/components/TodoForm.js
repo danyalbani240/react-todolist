@@ -10,7 +10,8 @@ const TodoForm = () => {
 	*/
 
 	const dispatch = useTodosActions();
-	const addTodo = () => {
+	const addTodo = (e) => {
+		e.preventDefault();
 		const newTodo = {
 			id: Math.floor(Math.random() * 1000),
 			isCompleted: false,
@@ -21,7 +22,7 @@ const TodoForm = () => {
 	};
 
 	return (
-		<div className="flex items-center justify-center">
+		<form onSubmit={addTodo} className="flex items-center justify-center">
 			<input
 				className="p-3 focus:outline-violet-600 border border-violet-600  transition-all h-10"
 				type={"text"}
@@ -29,12 +30,12 @@ const TodoForm = () => {
 				onChange={(e) => setTodo(e.target.value)}
 			/>
 			<button
-				onClick={addTodo}
+				type="submit"
 				className="px-3 bg-violet-600 text-white active:bg-violet-700 text-center transition h-10"
 			>
 				add
 			</button>
-		</div>
+		</form>
 	);
 };
 
