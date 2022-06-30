@@ -3,11 +3,23 @@ import { useTodosActions } from "./TodoApp";
 
 const TodoForm = () => {
 	const [todo, setTodo] = useState("");
+	/*
+	
+		get the index, find the item , 
+		create new Item and say the item is equal to this now or actually use splice
+	*/
 
 	const dispatch = useTodosActions();
 	const addTodo = () => {
-		dispatch((oldValue) => [...oldValue, todo]);
+		const newTodo = {
+			id: Math.floor(Math.random() * 1000),
+			isCompleted: false,
+			title: todo,
+		};
+		dispatch((oldValue) => [...oldValue, newTodo]);
+		setTodo("");
 	};
+
 	return (
 		<div className="flex items-center justify-center">
 			<input

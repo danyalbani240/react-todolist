@@ -5,12 +5,43 @@ const TodosContext = createContext();
 const TodosContextDispatch = createContext();
 const TodoApp = () => {
 	const [todos, setTodos] = useState([]);
+
+	const completeTodo = (id) => {
+		const index = todos.findIndex((item) => item.id === id);
+
+		const clonedTodos = [...todos];
+
+		clonedTodos[index].isCompleted = !clonedTodos[index].isCompleted;
+
+		setTodos([...clonedTodos]);
+	};
+	const deleteTodo = (id) => {
+		const index = todos.findIndex((item) => item.id === id);
+
+		const clonedTodos = [...todos];
+		clonedTodos.splice(index, index + 1);
+
+		setTodos([...clonedTodos]);
+	};
+	const editTodo = (id, value) => {
+		const index = todos.findIndex((item) => item.id === id);
+
+		const clonedTodos = [...todos];
+
+		clonedTodos[index].title = value;
+
+		setTodos([...clonedTodos]);
+	};
 	return (
 		<TodosContext.Provider value={todos}>
 			<TodosContextDispatch.Provider value={setTodos}>
 				<div className="app-container flex flex-col justify-center items-center rounded-md p-5 border-2 border-gray-200">
 					<TodoForm />
-					<TodoList />
+					<TodoList
+						completeTodo={completeTodo}
+						deleteTodo={deleteTodo}
+						editTodo={editTodo}
+					/>
 				</div>
 			</TodosContextDispatch.Provider>
 		</TodosContext.Provider>
